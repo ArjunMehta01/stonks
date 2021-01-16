@@ -52,6 +52,21 @@ def collectSubData(subm):
     
     subData.append((sub_id,title, text, url,author,score, upvoteratio, created,numComms,permalink,flair, awards))
     subStats[sub_id] = subData
+
+
+def updateSubs_file():
+    upload_count = 0
+    #location = "\\Reddit Data\\" >> If you're running this outside of a notebook you'll need this to direct to a specific location
+    file = 'posts.csv'
+    with open(file, 'w', newline='', encoding='utf-8') as file: 
+        a = csv.writer(file, delimiter=',')
+        headers = ["Post ID","Title", "text", "Url","Author","Score","upvoteratio", "Publish Date","Total No. of Comments","Permalink","Flair", "awards"]
+        a.writerow(headers)
+        for sub in subStats:
+            a.writerow(subStats[sub][0])
+            upload_count+=1
+            
+        print(str(upload_count) + " submissions have been uploaded")
    
 
 def main(start, end):
@@ -78,6 +93,11 @@ def main(start, end):
 	print(list(subStats.values())[0][0][1] + " created: " + str(list(subStats.values())[0][0][5]))
 	print("Last entry is:")
 	print(list(subStats.values())[-1][0][1] + " created: " + str(list(subStats.values())[-1][0]))
+	updateSubs_file()
+
 	return
 
 main("01/1/2021","02/1/2021")
+
+
+# Cntrl D exits vm
