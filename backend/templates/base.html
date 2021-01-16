@@ -16,31 +16,21 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="../">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="../about">About Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="https://www.reddit.com/">Analysis</a>
+                <a class="nav-link" href="../analysis">Analysis</a>
               </li>
             </ul>
           </div>
         </div>
       </nav>
 
-
-      <div class="input-group mb-3">
-        <select class="custom-select" id="inputGroupSelect02">
-          <option selected>Choose...</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-        <div class="input-group-append">
-          <label class="input-group-text" for="inputGroupSelect02">Options</label>
-        </div>
-      </div>
+      {% block body %}
+      {% endblock %}
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>

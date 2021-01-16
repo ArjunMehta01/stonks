@@ -1,10 +1,9 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, redirect
 app = Flask(__name__)
 
 @app.route("/")
-@app.route("/home")
 def home():
-    return render_template('base.html') #ADD HTML
+    return render_template('home.html') #ADD HTML
 
 @app.route("/about")
 def about():
@@ -13,14 +12,24 @@ def about():
 @app.route("/analysis", methods=["POST", "GET"])
 def analysis():
     if request.method == "POST":
-        stonk = request.form['stock_name']
-        return redirect(url_for('stock'), stocks=stonk)
+        print('1')
+        stock_name = request.form['nm']
+
+
+
+        ##INSERT ANALYSIS FUNCTIONS
+
+
+
+        print(type(stock_name))
+        print('1')
+        return redirect(url_for('stonk', stocks=stock_name))
     else:
-        return render_template('base.html')
+        return render_template('analysis.html')
 
 @app.route("/analysis/<stocks>")
 def stonk(stocks):
-    return f"{stocks}"
+    return render_template('final.html')
 
 
 if __name__ == "__main__":

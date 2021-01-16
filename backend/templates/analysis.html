@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block body %}
+<form action='#' method='post'>
+  <div class="form-group">
+    <label for="inputStock">Stock Symbol</label>
+    <input type="text" name = nm class="form-control" id="inputStock" aria-describedby="emailHelp" placeholder="Enter Stock Symbol">
+    <small id="inputStock" class="form-text text-muted">Please enter stock you wish to analyize.</small>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+{% endblock %}
