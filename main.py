@@ -10,6 +10,9 @@ def home():
 def about():
     return "<h1>About Page</h1>"
 
+@app.route("/contributors")
+def contributors():
+    return "<h1>Contributor Info Page</h1>"
 
 if __name__ == "__main__":
     app.run(debug=True)
