@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Centering list: https://stackoverflow.com/questions/30829916/how-can-i-center-my-ul-li-list-in-css-->
 
 {% extends "base.html"%}
 {% block body %}
@@ -6,21 +7,31 @@
     body {
         background-color: rgb(97, 187, 187);
     }
+
 </style>
-
-
-<div>
-    <ol>
-        <li>First</li>
-        <li>Second</li>
-      </ol>
-</div>
-
-<div>
-    <ol>
-        <li>First</li>
-        <li>Second</li>
-      </ol>
-</div>
+<html>
+    <head>
+        <h1>Top 10 Performing Companies:</h1>
+    </head>
+    <br>
+    <body>
+        <div class="id1">
+            <strong>
+                <ol>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>8</li>
+                    <li>9</li>
+                    <li>10</li>
+                </ol>
+            </strong>
+        </div>
+    </body>
+</html>
 
 {% endblock %}
