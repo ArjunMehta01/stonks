@@ -1,3 +1,7 @@
+"""
+Flask App Init: https://www.youtube.com/watch?v=MwZwr5Tvyxo&list=PL-osiE80TeTs4UjLw5MM6OjgkjFeUxCYH
+"""
+
 from flask import Flask, render_template, request, url_for, redirect
 import Requests
 app = Flask(__name__)
