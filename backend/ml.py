@@ -6,37 +6,50 @@ import pandas
 from Requests import Requests
 
 
-
-# tokenize = lambda x: x.split()
-
-
-# quote = torchtext.data.Field(sequential=True, use_vocab=True, tokenize=tokenize, lower=True)
-# score = torchtext.data.Field(sequential=True, use_vocab=True)
-
-
-# fields = {'quote': ('q', quote), 'score': ('s', score)}
-
-# train_data, test_data = torchtext.data.TabularDataset.splits(path='mydata', train ='train.csv', test='test.csv', format='csv', fields=fields)
-
-
-data = pandas.read_csv('backend/posts.csv') # assume 
-code = 'TSLA'
+class Analysis():
+    def __init__(self, code):
+        self.code = code
+        self.data = pandas.read_csv('backend/posts.csv')
+        self.flairs = {}
+        total_flairs = 0
 
 tester = Requests(code)
 name = tester.getName()
+t = tester.getAnalysis()
 flairs = {}
-#lookup stonk name
+total_flairs = 0
 
 for i in range(len(data)):
         if (name or code)in (data.loc[i,'Title'].upper()):
-            print(i)
             if data.loc[i,'Flair'] in flairs:
                 flairs[data.loc[i,'Flair']] += 1
+                total_flairs += 1
             else:
                 flairs[data.loc[i,'Flair']] = 1
+                total_flairs += 1
 
-print(flairs)
-                
+
+voilitity = (flairs['Discussion'] + flairs['DD'] + flairs['YOLO'] + flairs['Options'] - flairs['Fundamentals']) / total_flairs
+
+try:
+    score = flairs['Gain'] - flairs['Loss']# 0 to 100
+except:
+    score = 0
+
+
+b = t['buy'] 
+s = t['sell']
+sb = t['strongBuy']
+ss = t['strongSell']
+
+finScore = (2*sb + b - s - 2*ss) 
+print(finScore * voilitity)
+
+
+
+
+
+
 
 
 

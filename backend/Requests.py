@@ -25,7 +25,12 @@ class Requests():
         lod = json.loads(r.text)
         return lod['result'][0]['description'].split()[0]
 
-        def getCode(self):
-            r = requests.get(self.url + 'search?q=' + self.code + '&token=' + self.apiKey)
-            lod = json.loads(r.text)
-            return lod['result'][0]['displaySymbol']
+    def getCode(self):
+        r = requests.get(self.url + 'search?q=' + self.code + '&token=' + self.apiKey)
+        lod = json.loads(r.text)
+        return lod['result'][0]['displaySymbol']
+        
+    def getAnalysis(self):
+        r = requests.get(self.url + 'stock/recommendation?symbol=' + self.code + "&token=" + self.apiKey)
+        lod = json.loads(r.text)
+        return lod[0]
