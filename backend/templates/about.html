@@ -1,19 +1,42 @@
 <!DOCTYPE html>
 
+<!-- -->
+
 {% extends "base.html"%}
 {% block body %}
 <style>
     body {
         background-color: rgb(97, 187, 187);
+        text-align: center;
+    }
+
+    .box {
+        border-style: solid;
+        text-align: center;
+        border-color: black;
+        border-width: 2px;
+        width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .p1 {
+        text-align: center;
     }
 </style>
 
-<div>
-    <h1></h1>
-</div>
-{% endblock %}
-
-<!-- Stonks is a web app that allows users to analayze a stock of their choosing with the Analysis Stonks System (ASS) method.
+<html>
+    <head class="">
+        <h1>What This Application Does:</h1>
+    </head>
+    <body>
+        <strong>
+        <p class="box p1">
+            Stonks is a web app that allows users to analyze a stock of their choosing with the Analysis Stonks System (ASS) method.
     The ASS method we created combines rudimentary machine learning with traditional financial analysis to give you the best
     picture of whether it's a good time to buy or a great time to buy
- -->
+        </p>
+    </strong>
+    </body>
+</html>
+{% endblock %}
