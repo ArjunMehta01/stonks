@@ -54,7 +54,7 @@ def collectSubData(subm):
 
     awards = subm['total_awards_received']
     
-    subData.append((sub_id,title, text, url,author,score, created,numComms,permalink,flair, awards))
+    subData.append((sub_id,title, text, flair))
     subStats[sub_id] = subData
 
 
@@ -64,7 +64,7 @@ def updateSubs_file():
     file = 'shot.csv'
     with open(file, 'w', newline='', encoding='utf-8') as file: 
         a = csv.writer(file, delimiter=',')
-        headers = ["Post ID","Title", "text", "Url","Author","Score", "Publish Date","Total No. of Comments","Permalink","Flair", "awards"]
+        headers = ["Post ID","Title", "text", "Flair"]
         a.writerow(headers)
         for sub in subStats:
             a.writerow(subStats[sub][0])
@@ -91,17 +91,13 @@ def main(startd, endd):
 		after = data[-1]['created_utc']
 		url = makeurl(after, endd)
 		data = getPushshiftData(url)
-	print(str(len(subStats)) + " submissions have added to list")
-	print("1st entry is:")
-	print(list(subStats.values())[0][0][1] + " created: " + str(list(subStats.values())[0][0][5]))
-	print("Last entry is:")
-	print(list(subStats.values())[-1][0][1] + " created: " + str(list(subStats.values())[-1][0]))
+	print('Thread Done')
 
 
 	return
 
 
-def lightning(start, end, threads = 25):
+def lightning(start, end, threads = 8):
 	startd, endd = convertdates(start, end)
 	intervailtime = (endd - startd) // threads
 	thr = []
