@@ -4,6 +4,7 @@ import json
 import csv
 import time
 import datetime
+import threading
 
 subStats = {}
 
@@ -72,8 +73,7 @@ def updateSubs_file():
         print(str(upload_count) + " submissions have been uploaded")
    
 
-def main(start, end):
-	startd, endd = convertdates(start, end)
+def main(startd, endd):
 	print(startd)
 	print(endd)
 	url = makeurl(startd, endd)
@@ -96,11 +96,34 @@ def main(start, end):
 	print(list(subStats.values())[0][0][1] + " created: " + str(list(subStats.values())[0][0][5]))
 	print("Last entry is:")
 	print(list(subStats.values())[-1][0][1] + " created: " + str(list(subStats.values())[-1][0]))
-	updateSubs_file()
+
 
 	return
 
-main("01/9/2020","01/12/2020")
+
+def lightning(start, end, threads = 25):
+	startd, endd = convertdates(start, end)
+	intervailtime = (endd - startd) // threads
+	thr = []
+	for i in range(0, threads):
+		t= threading.Thread( target=main, args=(startd + i*intervailtime, startd + i*intervailtime + intervailtime,))
+		t.start()
+		thr.append(t)
+
+	for t in thr:
+		t.join()
+	updateSubs_file()
+	return
+
+
+lightning("01/9/2020","01/12/2020")
+
+
+
+
+
+
+
 
 
 # Cntrl D exits vm
