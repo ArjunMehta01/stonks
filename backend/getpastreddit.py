@@ -46,11 +46,14 @@ def collectSubData(subm):
     created = datetime.datetime.fromtimestamp(subm['created_utc']) #1520561700.0
     numComms = subm['num_comments']
     permalink = subm['permalink']
-    text = subm['selftext']
+    try:
+    	text = subm['selftext']
+    except KeyError:
+    	text=''
+
     awards = subm['total_awards_received']
-    upvoteratio = subm['upvote_ratio']
     
-    subData.append((sub_id,title, text, url,author,score, upvoteratio, created,numComms,permalink,flair, awards))
+    subData.append((sub_id,title, text, url,author,score, created,numComms,permalink,flair, awards))
     subStats[sub_id] = subData
 
 
@@ -60,7 +63,7 @@ def updateSubs_file():
     file = 'posts.csv'
     with open(file, 'w', newline='', encoding='utf-8') as file: 
         a = csv.writer(file, delimiter=',')
-        headers = ["Post ID","Title", "text", "Url","Author","Score","upvoteratio", "Publish Date","Total No. of Comments","Permalink","Flair", "awards"]
+        headers = ["Post ID","Title", "text", "Url","Author","Score", "Publish Date","Total No. of Comments","Permalink","Flair", "awards"]
         a.writerow(headers)
         for sub in subStats:
             a.writerow(subStats[sub][0])
@@ -97,7 +100,7 @@ def main(start, end):
 
 	return
 
-main("01/1/2021","02/1/2021")
+main("01/9/2020","01/12/2020")
 
 
 # Cntrl D exits vm
