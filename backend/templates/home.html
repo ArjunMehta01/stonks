@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Centering list: https://stackoverflow.com/questions/30829916/how-can-i-center-my-ul-li-list-in-css-->
+<!-- Inspiration on box: https://www.freecodecamp.org/learn/responsive-web-design/basic-css/add-different-padding-to-each-side-of-an-element-->
 
 {% extends "base.html"%}
 {% block body %}
@@ -20,6 +20,18 @@
     h1 {
         text-align: center;
     }
+
+    .align-cen {
+        text-align: center;
+        position: relative;
+        top: 100px;
+    }
+
+    .style-button {
+        width: 150px;
+        height: 100px;
+    }
+
 </style>
 <html>
     <head>
@@ -41,6 +53,9 @@
                     <li>10</li>
                 </ol>
             </strong>
+        </div>
+        <div class="align-cen">
+            <button target="../analysis" id="button1" type="submit" class="btn btn-success style-button"><a class="nav-link" href="../analysis">ANALYZE</a></button>
         </div>
     </body>
 </html>
