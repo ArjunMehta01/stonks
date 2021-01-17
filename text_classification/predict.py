@@ -37,4 +37,3 @@ if __name__ == "__main__":
     dictionary = torch.load(args.dictionary)
     for line in sys.stdin:
         print(predict(line, model, dictionary, args.ngrams))
-© 2021 GitHub, Inc.

@@ -193,4 +193,3 @@ if __name__ == "__main__":
     if args.dictionary is not None:
         print("Save vocab to {}".format(args.dictionary))
         torch.save(train_dataset.get_vocab(), args.dictionary)
-© 2021 GitHub, Inc.
