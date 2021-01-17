@@ -24,8 +24,34 @@ def get_dict(csv_in):
     return data_dict
 
 
-def sort_by_date():
-    pass
+def count_one_two(file_name):
+    """ Take in a file name and return counts of 1 and 2
+
+    Args:
+        file_name (string): a file name
+
+    Returns:
+        tuple: a tuple with the first position of count of two
+                and the second position of count of one
+    """ 
+    count_two = 0
+    count_one = 0
+    with open(file_name, "r") as infile:
+        while True:
+            try:
+                a_num_raw = infile.readline().strip()
+                if a_num_raw != "":
+                    a_num = int(a_num_raw)
+                    if a_num == 2:
+                        count_two += 1
+                    elif a_num == 1:
+                        count_one += 1
+                elif a_num_raw == "":
+                    break
+            except EOFError:
+                break
+    
+    return (count_two, count_one)
 
 if __name__ == "__main__":
     a = get_dict("smallset.csv")
