@@ -4,6 +4,7 @@ import json
 import csv
 import time
 import datetime
+import threading
 
 subStats = {}
 
@@ -53,17 +54,17 @@ def collectSubData(subm):
 
     awards = subm['total_awards_received']
     
-    subData.append((sub_id,title, text, url,author,score, created,numComms,permalink,flair, awards))
+    subData.append((sub_id,title, text, flair))
     subStats[sub_id] = subData
 
 
 def updateSubs_file():
     upload_count = 0
     #location = "\\Reddit Data\\" >> If you're running this outside of a notebook you'll need this to direct to a specific location
-    file = 'posts.csv'
+    file = 'shot.csv'
     with open(file, 'w', newline='', encoding='utf-8') as file: 
         a = csv.writer(file, delimiter=',')
-        headers = ["Post ID","Title", "text", "Url","Author","Score", "Publish Date","Total No. of Comments","Permalink","Flair", "awards"]
+        headers = ["Post ID","Title", "text", "Flair"]
         a.writerow(headers)
         for sub in subStats:
             a.writerow(subStats[sub][0])
@@ -72,8 +73,7 @@ def updateSubs_file():
         print(str(upload_count) + " submissions have been uploaded")
    
 
-def main(start, end):
-	startd, endd = convertdates(start, end)
+def main(startd, endd):
 	print(startd)
 	print(endd)
 	url = makeurl(startd, endd)
@@ -91,16 +91,35 @@ def main(start, end):
 		after = data[-1]['created_utc']
 		url = makeurl(after, endd)
 		data = getPushshiftData(url)
-	print(str(len(subStats)) + " submissions have added to list")
-	print("1st entry is:")
-	print(list(subStats.values())[0][0][1] + " created: " + str(list(subStats.values())[0][0][5]))
-	print("Last entry is:")
-	print(list(subStats.values())[-1][0][1] + " created: " + str(list(subStats.values())[-1][0]))
-	updateSubs_file()
+	print('Thread Done')
+
 
 	return
 
-main("01/9/2020","01/12/2020")
+
+def lightning(start, end, threads = 8):
+	startd, endd = convertdates(start, end)
+	intervailtime = (endd - startd) // threads
+	thr = []
+	for i in range(0, threads):
+		t= threading.Thread( target=main, args=(startd + i*intervailtime, startd + i*intervailtime + intervailtime,))
+		t.start()
+		thr.append(t)
+
+	for t in thr:
+		t.join()
+	updateSubs_file()
+	return
+
+
+lightning("30/1/2020","31/1/2020")
+
+
+
+
+
+
+
 
 
 # Cntrl D exits vm
