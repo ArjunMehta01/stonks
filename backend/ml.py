@@ -11,39 +11,38 @@ class Analysis():
         self.code = code
         self.data = pandas.read_csv('backend/posts.csv')
         self.flairs = {}
-        total_flairs = 0
+        self.r = Requests(code)
+        self.name = self.r.getName()
+        
+        self.total_flairs = 0
+    
+    def findFlairs(self):
+        for i in range(len(self.data)):
+                if (self.name or self.code)in (self.data.loc[i,'Title'].upper()):
+                    if self.data.loc[i,'Flair'] in self.flairs:
+                        self.flairs[self.data.loc[i,'Flair']] += 1
+                        self.total_flairs += 1
+                    else:
+                        self.flairs[self.data.loc[i,'Flair']] = 1
+                        self.total_flairs += 1
+    
+    def return_prediction(self):
+        voilitity = (self.flairs['Discussion'] + self.flairs['DD'] + self.flairs['YOLO'] + self.flairs['Options'] - self.flairs['Fundamentals']) / self.total_flairs
+        try:
+            score = (self.flairs['Gain'] - self.flairs['Loss'])*voilitity# 0 to 100
+        except:
+            score = 0
 
-tester = Requests(code)
-name = tester.getName()
-t = tester.getAnalysis()
-flairs = {}
-total_flairs = 0
+        t = self.r.getAnalysis()
+        b = t['buy'] 
+        s = t['sell']
+        sb = t['strongBuy']
+        ss = t['strongSell']
+        finScore = (2*sb + b - s - 2*ss) /(b+s+sb+ss)
 
-for i in range(len(data)):
-        if (name or code)in (data.loc[i,'Title'].upper()):
-            if data.loc[i,'Flair'] in flairs:
-                flairs[data.loc[i,'Flair']] += 1
-                total_flairs += 1
-            else:
-                flairs[data.loc[i,'Flair']] = 1
-                total_flairs += 1
+        return (finScore+score)/2
 
 
-voilitity = (flairs['Discussion'] + flairs['DD'] + flairs['YOLO'] + flairs['Options'] - flairs['Fundamentals']) / total_flairs
-
-try:
-    score = flairs['Gain'] - flairs['Loss']# 0 to 100
-except:
-    score = 0
-
-
-b = t['buy'] 
-s = t['sell']
-sb = t['strongBuy']
-ss = t['strongSell']
-
-finScore = (2*sb + b - s - 2*ss) 
-print(finScore * voilitity)
 
 
 
