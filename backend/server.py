@@ -8,7 +8,7 @@ def home():
 
 @app.route("/about")
 def about():
-    return "<h1>About Page</h1>" #ADD HTML
+    return render_template('about.html') #ADD HTML
 
 @app.route("/analysis", methods=["POST", "GET"])
 def analysis():
