@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <!-- Centering: https://www.w3.org/Style/Examples/007/center.en.tmpl -->
 <!-- CSS Styling: https://www.freecodecamp.org/learn/-->
 
@@ -6,8 +7,12 @@
 {% block body %}
 
 <style>
-  .green-background {
-    background-color: rgb(148, 212, 148);
+  .stonk-pic {
+    text-align: center;
+    border-width: 5px;
+    border-radius: 10px;
+  }
+  .center-obj {
     text-align: center;
   }
 
@@ -20,13 +25,21 @@
     margin-left: auto;
     margin-right: auto;
   }
+
+  .smaller-image {
+    width: 300px;
+  }
+
+  body {
+    background-color: rgb(97, 187, 187);
+  }
 </style>
 
-<div class=green-background>
-  <img src="https://i.pinimg.com/originals/1d/49/79/1d4979dd10b346defe8b2601dc36780e.jpg" class="img-fluid" alt="Responsive image" id='image1'>
+<div class=stonk-pic>
+  <img src="https://i.pinimg.com/originals/1d/49/79/1d4979dd10b346defe8b2601dc36780e.jpg" class="img-fluid smaller-image" alt="Responsive image" id='image1'>
 </div>
 
-<form action='#' method='post' class="green-background">
+<form action='#' method='post' class="center-obj">
   <div class="form-group">
     <label for="inputStock">Stock Symbol</label>
     <input type="text" name = nm class="form-control center-search" id="inputStock" aria-describedby="emailHelp" placeholder="Enter Stock Symbol">
@@ -35,7 +48,7 @@
   <button id="button1" type="submit" class="btn btn-success ">Submit</button>
 </form>
   
-</form>
+
 
 
 {% endblock %}
