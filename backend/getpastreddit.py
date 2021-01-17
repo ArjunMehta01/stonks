@@ -61,7 +61,7 @@ def collectSubData(subm):
 def updateSubs_file():
     upload_count = 0
     #location = "\\Reddit Data\\" >> If you're running this outside of a notebook you'll need this to direct to a specific location
-    file = 'posts.csv'
+    file = 'shot.csv'
     with open(file, 'w', newline='', encoding='utf-8') as file: 
         a = csv.writer(file, delimiter=',')
         headers = ["Post ID","Title", "text", "Url","Author","Score", "Publish Date","Total No. of Comments","Permalink","Flair", "awards"]
@@ -116,7 +116,7 @@ def lightning(start, end, threads = 25):
 	return
 
 
-lightning("01/9/2020","01/12/2020")
+lightning("30/1/2020","31/1/2020")
 
 
 
