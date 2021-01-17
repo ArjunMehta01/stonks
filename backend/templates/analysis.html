@@ -1,16 +1,40 @@
+<!-- Centering: https://www.w3.org/Style/Examples/007/center.en.tmpl -->
+<!-- CSS Styling: https://www.freecodecamp.org/learn/-->
+
 {% extends "base.html" %}
 
 {% block body %}
 
-<img src="..." class="img-fluid" alt="Responsive image">
+<style>
+  .green-background {
+    background-color: rgb(148, 212, 148);
+    text-align: center;
+  }
 
-<form action='#' method='post'>
+  #button1 {
+    width: 20em;
+  }
+
+  .center-search {
+    width: 50em; 
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+
+<div class=green-background>
+  <img src="https://i.pinimg.com/originals/1d/49/79/1d4979dd10b346defe8b2601dc36780e.jpg" class="img-fluid" alt="Responsive image" id='image1'>
+</div>
+
+<form action='#' method='post' class="green-background">
   <div class="form-group">
     <label for="inputStock">Stock Symbol</label>
-    <input type="text" name = nm class="form-control" id="inputStock" aria-describedby="emailHelp" placeholder="Enter Stock Symbol">
+    <input type="text" name = nm class="form-control center-search" id="inputStock" aria-describedby="emailHelp" placeholder="Enter Stock Symbol">
     <small id="inputStock" class="form-text text-muted">Please enter stock you wish to analyize.</small>
   </div>
-  <button type="submit" class="btn btn-success ">Submit</button>
+  <button id="button1" type="submit" class="btn btn-success ">Submit</button>
+</form>
+  
 </form>
 
 
